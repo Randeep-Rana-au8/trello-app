@@ -1,0 +1,62 @@
+.category {
+  width: 260px;
+  min-height: 250px;
+  background-color: rgb(55, 64, 78);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  padding: 0 20px;
+  padding-bottom: 20px;
+}
+
+/* .taskContainer {
+    display: flex;
+    justify-content: "space-between";
+    align-items: "center";
+    background: "red";
+    height: "30px";
+    padding: " 10px";
+    margin: "10px 0";
+  } */
+
+.abc {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(46, 122, 136);
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  min-height: 30px;
+  padding: 0 5px 6px 10px;
+  border-radius: 7px;
+
+  margin: 10px 0;
+}
+.taskData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskData > h5 {
+  margin: 11px;
+}
+
+.allIcons {
+  display: flex;
+}
+
+.trash-icon {
+  margin-left: 5px;
+  color: white;
+}
+
+.trash-icon:hover {
+  color: red;
+}
+
+.edit-icon:hover {
+  color: rgb(230, 216, 31);
+}
