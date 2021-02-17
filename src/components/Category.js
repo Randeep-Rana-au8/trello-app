@@ -14,6 +14,7 @@ const Category = ({ cateName }) => {
       const res = await axios.get("https://trello-backend-api.herokuapp.com/tasks");
       setTasks(res.data.filter((task) => task.category === cateName));
     };
+
     fetchTasks();
   }, []);
 
