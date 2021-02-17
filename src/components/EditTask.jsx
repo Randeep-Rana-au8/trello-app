@@ -31,7 +31,7 @@ const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
       });
       setTasks(newTasks.filter((task) => task.category === cateName));
     } catch (Err) {
-      console.log(Err.details[0].message);
+      console.log(Err.message);
     }
   };
 
