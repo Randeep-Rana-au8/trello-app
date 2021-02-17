@@ -12,7 +12,11 @@ const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/updateTask/${data._id}`, { name, status, category: cateName });
+      const res = await axios.put(`https://trello-backend-api.herokuapp.com/updateTask/${data._id}`, {
+        name,
+        status,
+        category: cateName,
+      });
 
       editMode(false);
       const newTasks = tasks.map((task) => {

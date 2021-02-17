@@ -11,7 +11,7 @@ const Category = ({ cateName }) => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const res = await axios.get("http://localhost:5000/tasks");
+      const res = await axios.get("https://trello-backend-api.herokuapp.com/tasks");
       setTasks(res.data.filter((task) => task.category === cateName));
     };
     fetchTasks();
@@ -20,7 +20,7 @@ const Category = ({ cateName }) => {
   const getData = (data) => {
     const category = cateName;
     const addTasks = async () => {
-      const res = await axios.post("http://localhost:5000/addtask", { ...data, category });
+      const res = await axios.post("https://trello-backend-api.herokuapp.com/addtask", { ...data, category });
     };
     addTasks();
     setTasks([...tasks, data]);
@@ -28,7 +28,7 @@ const Category = ({ cateName }) => {
 
   const handleDeleteTask = (data) => {
     const deleteTask = async () => {
-      const res = await axios.delete(`http://localhost:5000/deleteTask/${data._id}`);
+      const res = await axios.delete(`https://trello-backend-api.herokuapp.com/deleteTask/${data._id}`);
     };
     deleteTask();
     const newTasks = tasks.filter((task) => task._id != data._id);
