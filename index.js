@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb+srv://rana01:adminrana@cluster0.egpsr.mongodb.net/test", {
     useUnifiedTopology: true,
     useCreateIndex: true,
     useNewUrlParser: true,
