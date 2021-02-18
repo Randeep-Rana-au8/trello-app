@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import Category from "./components/Category";
 import CategoryInput from "./components/CategoryInput";
+import axios from "axios";
 
 import { add_category } from "./redux/actions/allActions";
 
 function App({ add_category, category }) {
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const cate = await axios.get("https://trello-backend-api.herokuapp.com/categories");
+      add_category(...cate.data);
+    };
+
+    fetchCategory();
+  }, []);
+
   return (
     <div className="App">
       <div>

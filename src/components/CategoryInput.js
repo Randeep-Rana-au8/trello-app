@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 const CategoryInput = ({ sendData, placeholder }) => {
-  const [data, setData] = useState("");
+  const [name, setName] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
-    sendData(data);
-    setData("");
+    sendData({ name });
+    setName("");
   };
 
   return (
     <form onSubmit={handleClick}>
-      <input required placeholder={placeholder} value={data} onChange={(e) => setData(e.target.value)} type="text" />
+      <input required placeholder={placeholder} value={name} onChange={(e) => setName(e.target.value)} type="text" />
       <button type="submit">Submit</button>
     </form>
   );

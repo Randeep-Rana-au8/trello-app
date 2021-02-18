@@ -12,14 +12,14 @@ const Category = ({ cateName }) => {
   useEffect(() => {
     const fetchTasks = async () => {
       const res = await axios.get("https://trello-backend-api.herokuapp.com/tasks");
-      setTasks(res.data.filter((task) => task.category === cateName));
+      setTasks(res.data.filter((task) => task.category === cateName.name));
     };
 
     fetchTasks();
   }, []);
 
   const getData = (data) => {
-    const category = cateName;
+    const category = cateName.name;
     const addTasks = async () => {
       const res = await axios.post("https://trello-backend-api.herokuapp.com/addtask", { ...data, category });
     };
@@ -44,7 +44,7 @@ const Category = ({ cateName }) => {
   return (
     <div className="category">
       <div>
-        <h1>{cateName}</h1>
+        <h1>{cateName.name}</h1>
         {tasks.map((task) => (
           <div className="abc" key={task._id}>
             <div className="taskData">
