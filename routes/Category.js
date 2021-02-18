@@ -16,8 +16,9 @@ app.post("/addcategory", async (req, res) => {
   res.send("Added Category");
 });
 
-// app.delete("/deleteCategory/:id", (req, res) => {
-//     const
-// })
+app.delete("/deleteCategory/:id", async (req, res) => {
+  const result = await Category.deleteOne({ _id: req.params.id });
+  res.send(result);
+});
 
 module.exports = app;
