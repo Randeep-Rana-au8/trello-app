@@ -12,6 +12,12 @@
   padding-bottom: 20px;
 }
 
+.category-container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 /* .taskContainer {
     display: flex;
     justify-content: "space-between";

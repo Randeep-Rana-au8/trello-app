@@ -7,7 +7,19 @@ const reducer = (state = initialState, action) => {
     case "ADD_CATEGORY":
       return {
         ...state,
-        category: [...state.category, action.payload],
+        // category: [...state.category, action.payload],
+      };
+    case "FETCH_CATEGORY":
+      return {
+        ...state,
+        category: action.payload,
+      };
+
+    case "DELETE_CATEGORY":
+      const new_categories = state.category.filter((cate) => cate._id !== action.payload._id);
+      return {
+        ...state,
+        category: new_categories,
       };
 
     default:

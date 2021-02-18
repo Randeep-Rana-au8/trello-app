@@ -3,8 +3,10 @@ import Input from "./Input";
 import "./Category.css";
 import axios from "axios";
 import EditTask from "./EditTask";
+import { connect } from "react-redux";
+import { delete_category } from "../redux/actions/allActions";
 
-const Category = ({ cateName }) => {
+const Category = ({ cateName, delete_category }) => {
   const [tasks, setTasks] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editData, setEditData] = useState("");
@@ -16,7 +18,15 @@ const Category = ({ cateName }) => {
     };
 
     fetchTasks();
-  }, []);
+  }, [tasks]);
+
+  const handleDeleteCategory = (data) => {
+    const deleteCate = async () => {
+      const res = await axios.delete(`https://trello-backend-api.herokuapp.com/deleteCategory/${data._id}`);
+    };
+    deleteCate();
+    // delete_category(data);
+  };
 
   const getData = (data) => {
     const category = cateName.name;
@@ -24,7 +34,7 @@ const Category = ({ cateName }) => {
       const res = await axios.post("https://trello-backend-api.herokuapp.com/addtask", { ...data, category });
     };
     addTasks();
-    setTasks([...tasks, data]);
+    // setTasks([...tasks, data]);
   };
 
   const handleDeleteTask = (data) => {
@@ -33,7 +43,7 @@ const Category = ({ cateName }) => {
     };
     deleteTask();
     const newTasks = tasks.filter((task) => task._id != data._id);
-    setTasks(newTasks);
+    // setTasks(newTasks);
   };
 
   const handleEditTask = (data) => {
@@ -44,7 +54,12 @@ const Category = ({ cateName }) => {
   return (
     <div className="category">
       <div>
-        <h1>{cateName.name}</h1>
+        <div className="category-container-header">
+          <h1>{cateName.name}</h1>
+          <div onClick={(e) => handleDeleteCategory(cateName)} className="trash-icon">
+            <i className="fas fa-trash"></i>
+          </div>
+        </div>
         {tasks.map((task) => (
           <div className="abc" key={task._id}>
             <div className="taskData">
@@ -73,4 +88,4 @@ const Category = ({ cateName }) => {
   );
 };
 
-export default Category;
+export default connect(null, { delete_category })(Category);

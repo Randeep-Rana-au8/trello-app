@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
-const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
+const EditTask = ({ data, editMode, tasks, setTasks, cateName, categories }) => {
   const [name, setName] = useState("");
   const [status, setStatus] = useState("Pending");
-  //   const [category, setCategory] = useState("TODO");
+  const [category, setCategory] = useState(cateName.name);
   useEffect(() => {
     setName(data.name);
   }, []);
@@ -15,21 +16,23 @@ const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
       const res = await axios.put(`https://trello-backend-api.herokuapp.com/updateTask/${data._id}`, {
         name,
         status,
-        category: cateName,
+        category: category,
       });
 
       editMode(false);
       const newTasks = tasks.map((task) => {
         if (task._id === data._id) {
+          console.log(task);
+          console.log(data);
           task.name = name;
           task.status = status;
-          task.category = cateName;
+          task.category = cateName.name;
           return task;
         } else {
           return task;
         }
       });
-      setTasks(newTasks.filter((task) => task.category === cateName));
+      setTasks(newTasks.filter((task) => task.category.name === cateName.name));
     } catch (Err) {
       console.log(Err.message);
     }
@@ -54,6 +57,15 @@ const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
           <option value="Completed">Completed</option>
         </select>
       </div>
+      <div>
+        <label for="Category">Category </label>
+
+        <select id="Category" value={category} onChange={(e) => setCategory(e.target.value)}>
+          {categories.map((c) => (
+            <option value={c.name}>{c.name}</option>
+          ))}
+        </select>
+      </div>
 
       <button type="submit">Submit</button>
       <button onClick={handleCancel}>Cancel</button>
@@ -61,4 +73,10 @@ const EditTask = ({ data, editMode, tasks, setTasks, cateName }) => {
   );
 };
 
-export default EditTask;
+const mapStateToProps = (state) => {
+  return {
+    categories: state.category,
+  };
+};
+
+export default connect(mapStateToProps)(EditTask);
