@@ -11,7 +11,14 @@ const CategoryInput = ({ sendData, placeholder }) => {
 
   return (
     <form onSubmit={handleClick}>
-      <input required placeholder={placeholder} value={name} onChange={(e) => setName(e.target.value)} type="text" />
+      <input
+        maxLength="30"
+        required
+        placeholder={placeholder}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        type="text"
+      />
       <button type="submit">Submit</button>
     </form>
   );
