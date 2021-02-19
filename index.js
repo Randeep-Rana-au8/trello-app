@@ -13,8 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// ADD MONGO URL
+//MONGO URL IS deleted from here please add mongo url here
 mongoose
-  .connect("mongodb+srv://rana01:adminrana@cluster0.egpsr.mongodb.net/test", {
+  .connect(addUrlPlease, {
     useUnifiedTopology: true,
     useCreateIndex: true,
     useNewUrlParser: true,
